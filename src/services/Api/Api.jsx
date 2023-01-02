@@ -11,7 +11,7 @@ const instance = axios.create({
 
 async function getTrendingMovies() {
 	const { data } = await instance("/trending/movie/week")
-	return data
+	return data.results
 }
 
 async function getMoviesByQuery(query) {
@@ -38,4 +38,9 @@ async function getMovieReviews(id) {
 	return data
 }
 
-export default { getMoviesByQuery, getTrendingMovies, getMovieDetails, getMovieCast, getMovieReviews }
+async function getMovieGenres() {
+	const { data } = await instance(`/genre/movie/list`)
+	return data
+}
+
+export const API = { getMoviesByQuery, getTrendingMovies, getMovieDetails, getMovieCast, getMovieReviews, getMovieGenres }

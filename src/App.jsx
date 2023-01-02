@@ -1,21 +1,33 @@
-import logo from "./logo.svg"
-import "./App.css"
-import getTrendingMovies from "./components/Api/Api"
+import MoviesList from "./components/MoviesList/MoviesList"
+import { useState, useEffect } from "react"
+import { API } from "./services/Api/Api"
+import { setToLocalStorage, getFromLocalStorage } from "./utils/LocalStorage"
 
-function App() {
+export default function App() {
+	const [movies, setMovies] = useState([])
+	const [genresList] = useState(() => getFromLocalStorage("genres") ?? [])
+
+	useEffect(() => {
+		const getTrendingMovies = async () => {
+			const moviesList = await API.getTrendingMovies()
+			setMovies(moviesList)
+		}
+		getTrendingMovies()
+
+		if (genresList.length > 0) {
+			return
+		}
+
+		const getMovieGenres = async () => {
+			const genresList = await API.getMovieGenres()
+			setToLocalStorage("genres", genresList.genres)
+		}
+		getMovieGenres()
+	}, [])
+
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-					Learn React
-				</a>
-			</header>
-		</div>
+		<>
+			<MoviesList movies={movies} genresList={genresList} />
+		</>
 	)
 }
-
-export default App
