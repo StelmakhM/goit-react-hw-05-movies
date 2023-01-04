@@ -1,4 +1,3 @@
-import React from "react"
 import getGenreById from "../../utils/GenreById"
 
 export default function MovieItem({ title, overview, genreIds, genresList, score, poster_path }) {
@@ -7,10 +6,10 @@ export default function MovieItem({ title, overview, genreIds, genresList, score
 	return (
 		<li>
 			<h2>{title}</h2>
-			<p>User Score: {score}</p>
+			{/* <p>User Score: {score}</p>
 			<img src={`${IMG_BASE_URL}${poster_path}`} alt={`${title} poster`} />
 			<p>{overview}</p>
-			<p>Genres: {newGenres}</p>
+			<p>Genres: {newGenres}</p> */}
 		</li>
 	)
 }
