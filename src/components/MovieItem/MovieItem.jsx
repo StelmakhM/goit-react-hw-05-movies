@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function MovieItem({ title, overview, genreIds, genresList, score, poster_path, id }) {
+export default function MovieItem({ title, id }) {
   return (
     <li>
       <Link to={`movies/${id}`}>

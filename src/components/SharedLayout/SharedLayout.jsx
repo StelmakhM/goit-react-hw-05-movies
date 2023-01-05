@@ -1,13 +1,10 @@
-import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import AppBar from '../AppBar/AppBar';
 
 export default function SharedLayout() {
   return (
     <div>
-      <nav>
-        <Link to="/">HOME</Link>
-        <Link to="/movies">MOVIES</Link>
-      </nav>
+      <AppBar />
       <Outlet />
     </div>
   );

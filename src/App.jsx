@@ -1,50 +1,38 @@
 import MoviesList from './components/MoviesList/MoviesList';
+import MovieInfo from './components/MovieInfo/MovieInfo';
+import SharedLayout from './components/SharedLayout/SharedLayout';
+import Cast from './components/Cast/Cast';
+import Reviews from './components/Reviews/Reviews';
 import { useState, useEffect } from 'react';
 import { API } from './services/Api/Api';
-import { setToLocalStorage, getFromLocalStorage } from './utils/LocalStorage';
-import { Route, Routes, Link } from 'react-router-dom';
-import SharedLayout from './components/SharedLayout/SharedLayout';
+import { Route, Routes, Outlet } from 'react-router-dom';
 
 export default function App() {
-  const [movies, setMovies] = useState([]);
-  const [genresList] = useState(() => getFromLocalStorage('genres') ?? []);
+  const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
-    const getTrendingMovies = async () => {
-      const moviesList = await API.getTrendingMovies();
-      setMovies(moviesList);
-    };
-    getTrendingMovies();
-
-    if (genresList.length > 0) {
-      return;
-    }
-
-    const getMovieGenres = async () => {
-      const genresList = await API.getMovieGenres();
-      setToLocalStorage('genres', genresList.genres);
-    };
-    getMovieGenres();
+    API.getTrendingMovies().then(setTrendingMovies).catch(console.log);
   }, []);
 
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route
-            index
-            element={<MoviesList movies={movies} genresList={genresList} />}
-          />
-          <Route path="movies" element={<p>moviesearch</p>}>
-            <Route path="movies/:movieId" element={<p>moviesearch</p>} />
-            <Route path="movies/:movieId/cast" element={<p>moviesearch</p>} />
-            <Route
-              path="movies/:movieId/reviews"
-              element={<p>moviesearch</p>}
-            />
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<MoviesList movies={trendingMovies} />} />
+        <Route
+          path="movies"
+          element={
+            <div>
+              moviesearch
+              <Outlet />
+            </div>
+          }
+        >
+          <Route path=":movieId" element={<MovieInfo />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
-      </Routes>
-    </>
+      </Route>
+    </Routes>
   );
 }
