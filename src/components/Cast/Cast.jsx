@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { API } from '../../services/Api/Api';
+import placeholderURL from '../../utils/LocalStorage';
 
 export default function Cast() {
   const [cast, setCast] = useState([]);
@@ -13,15 +14,17 @@ export default function Cast() {
       .catch(console.log);
   }, []);
 
-  return (
+  return cast.length > 0 ? (
     <ul>
       {cast.map(({ name, profile_path, character }) => (
         <li key={name}>
-          <img src={`${IMG_BASE_URL}${profile_path}`} alt={`${name} actor`} />
+          <img src={profile_path ? `${IMG_BASE_URL}${profile_path}` : placeholderURL} />
           <p>Actor name : {name}</p>
           <p>Character : {character}</p>
         </li>
       ))}
     </ul>
+  ) : (
+    <p>No cast info for this movie</p>
   );
 }

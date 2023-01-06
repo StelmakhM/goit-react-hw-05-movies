@@ -10,20 +10,16 @@ export default function Reviews() {
     API.getMovieReviews(movieId).then(setReviews).catch(console.log);
   }, []);
 
-  return (
-    <>
-      {reviews.length > 0 ? (
-        <ul>
-          {reviews.map(({ author, content }) => (
-            <li>
-              <p>Author name: {author}</p>
-              <p>Review: {content}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No reviews for this movie</p>
-      )}
-    </>
+  return reviews.length > 0 ? (
+    <ul>
+      {reviews.map(({ author, content }) => (
+        <li key={author}>
+          <p>Author name: {author}</p>
+          <p>Review: {content}</p>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>No reviews for this movie</p>
   );
 }

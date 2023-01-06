@@ -1,9 +1,4 @@
-// import MoviesList from './components/MoviesList/MoviesList';
-// import MovieInfo from './components/MovieInfo/MovieInfo';
 import SharedLayout from './components/SharedLayout/SharedLayout';
-// import Cast from './components/Cast/Cast';
-// import Reviews from './components/Reviews/Reviews';
-// import SearchBar from './components/SearchBar/SearchBar';
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 

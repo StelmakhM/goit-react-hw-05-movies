@@ -1,6 +1,7 @@
 import { API } from '../../services/Api/Api';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import placeholderURL from '../../utils/LocalStorage';
 
 export default function MovieInfo() {
   const [movie, setMovie] = useState(null);
@@ -24,7 +25,7 @@ export default function MovieInfo() {
       <Link to={goBackHref}>Go Back</Link>
       <h2>{title}</h2>
       <p>User Score: {vote_average.toFixed(1)}</p>
-      <img src={`${IMG_BASE_URL}${poster_path}`} alt={`${title} poster`} />
+      <img src={poster_path ? `${IMG_BASE_URL}${poster_path}` : placeholderURL} alt={`${title} poster`} />
       <p>Overview: {overview}</p>
       <p>Genres: {newGenres}</p>
       <div>
@@ -36,7 +37,9 @@ export default function MovieInfo() {
           reviews
         </Link>
       </div>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
