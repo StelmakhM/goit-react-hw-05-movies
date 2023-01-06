@@ -1,12 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
+import { StyledLink } from './MovieItem.styled';
 
 export default function MovieItem({ title, href }) {
   const location = useLocation();
   return (
     <li>
-      <Link to={href} state={{ from: location }}>
-        <p>{title}</p>
-      </Link>
+      <StyledLink to={href} state={{ from: location }}>
+        {title}
+      </StyledLink>
     </li>
   );
 }
