@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-export default function MovieItem({ title, id }) {
+export default function MovieItem({ title, href }) {
+  const location = useLocation();
   return (
     <li>
-      <Link to={`movies/${id}`}>
+      <Link to={href} state={{ from: location }}>
         <p>{title}</p>
       </Link>
     </li>

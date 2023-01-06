@@ -1,10 +1,11 @@
 import { API } from '../../services/Api/Api';
 import { useState, useEffect } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 
 export default function MovieInfo() {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
+  const location = useLocation();
   const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w300';
 
   useEffect(() => {
@@ -16,8 +17,11 @@ export default function MovieInfo() {
   }
   const { title, overview, genres, vote_average, poster_path, id } = movie;
   const newGenres = genres.map(genre => genre.name).join(', ');
+  const goBackHref = location.state?.from ?? '/';
+
   return (
     <div>
+      <Link to={goBackHref}>Go Back</Link>
       <h2>{title}</h2>
       <p>User Score: {vote_average.toFixed(1)}</p>
       <img src={`${IMG_BASE_URL}${poster_path}`} alt={`${title} poster`} />

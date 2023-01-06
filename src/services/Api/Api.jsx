@@ -19,7 +19,7 @@ async function getMoviesByQuery(query) {
       query,
     },
   });
-  return data;
+  return data.results;
 }
 
 async function getMovieDetails(id) {
