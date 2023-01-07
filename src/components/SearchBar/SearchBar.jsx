@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { API } from '../../services/Api/Api';
-import MovieItem from '../MovieItem/MovieItem';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { StyledForm, StyledInput, SearchButton, MovieList } from './SearchBar.styled';
 import { CiSearch } from 'react-icons/ci';
+import MovieItem from '../MovieItem/MovieItem';
 
 export default function SearchBar() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,7 +43,7 @@ export default function SearchBar() {
       {movies.length > 0 && (
         <MovieList>
           {movies.map(({ id, original_title }) => (
-            <MovieItem key={id} title={original_title} id={id} href={`${id}`} />
+            <MovieItem key={id} title={original_title} href={`${id}`} />
           ))}
         </MovieList>
       )}

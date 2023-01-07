@@ -2,6 +2,9 @@
 body {
   font-family: sans-serif;
   line-height: 1.5;
+  background-image: url(./images/paper.jpg);
+  background-repeat: repeat;
+  background-attachment: fixed;
 }
 h1,
 h2,
