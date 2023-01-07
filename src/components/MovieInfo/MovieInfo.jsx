@@ -22,6 +22,7 @@ export default function MovieInfo() {
   const { title, overview, genres, vote_average, poster_path, id } = movie;
   const newGenres = genres.map(genre => genre.name).join(', ');
   const goBackHref = location.state?.from ?? '/';
+  console.log(location);
 
   return (
     <GeneralContainer>

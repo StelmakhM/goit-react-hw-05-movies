@@ -21,7 +21,7 @@ export default function Reviews() {
             <b>Author name:</b> {author}
           </p>
           <p>
-            <b>Review:</b> {content}
+            <b>Review:</b> <i>{content}</i>
           </p>
         </ReviewItem>
       ))}

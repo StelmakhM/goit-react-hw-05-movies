@@ -11,7 +11,7 @@ export default function Cast() {
 
   useEffect(() => {
     API.getMovieCast(movieId)
-      .then(cast => setCast(cast.slice(0, 5)))
+      .then(cast => setCast(cast.slice(0, 10)))
       .catch(console.log);
   }, []);
 

@@ -1,4 +1,5 @@
-import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 import { StyledLink } from './MovieItem.styled';
 
 export default function MovieItem({ title, href }) {
@@ -11,3 +12,8 @@ export default function MovieItem({ title, href }) {
     </li>
   );
 }
+
+MovieItem.propTypes = {
+  href: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
