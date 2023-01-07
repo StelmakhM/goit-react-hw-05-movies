@@ -1,9 +1,9 @@
 import { API } from '../../services/Api/Api';
 import { useState, useEffect, Suspense } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
-import placeholderURL from '../../utils/LocalStorage';
-import { StyledLink, MovieContainer, GeneralContainer, InfoContainer, AdditionalContainer, InfoTitle, ButtonContainer } from './MovieInfo.styled';
-import { StyledLink as LinkStyled } from '../AppBar/AppBar.styled';
+import placeholderURL from '../../utils/PlaseholderImage';
+import { StyledLink } from '../AppBar/AppBar.styled';
+import { GoBackButton, MovieContainer, GeneralContainer, InfoContainer, AdditionalContainer, InfoTitle, ButtonContainer } from './MovieInfo.styled';
 import { BiArrowBack } from 'react-icons/bi';
 
 export default function MovieInfo() {
@@ -25,10 +25,10 @@ export default function MovieInfo() {
 
   return (
     <GeneralContainer>
-      <StyledLink to={goBackHref}>
+      <GoBackButton to={goBackHref}>
         <BiArrowBack style={{ marginRight: 10 }} />
         Go Back
-      </StyledLink>
+      </GoBackButton>
       <MovieContainer>
         <img src={poster_path ? `${IMG_BASE_URL}${poster_path}` : placeholderURL} alt={`${title} poster`} />
         <InfoContainer>
@@ -47,15 +47,15 @@ export default function MovieInfo() {
       <AdditionalContainer>
         <InfoTitle>Additional information</InfoTitle>
         <ButtonContainer>
-          <LinkStyled data-id={id} to="cast">
+          <StyledLink data-id={id} to="cast">
             cast
-          </LinkStyled>
-          <LinkStyled data-id={id} to="reviews">
+          </StyledLink>
+          <StyledLink data-id={id} to="reviews">
             reviews
-          </LinkStyled>
+          </StyledLink>
         </ButtonContainer>
       </AdditionalContainer>
-      <Suspense>
+      <Suspense fallback={null}>
         <Outlet />
       </Suspense>
     </GeneralContainer>

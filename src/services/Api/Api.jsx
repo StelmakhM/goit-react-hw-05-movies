@@ -37,9 +37,4 @@ async function getMovieReviews(id) {
   return data.results;
 }
 
-async function getMovieGenres() {
-  const { data } = await instance(`/genre/movie/list`);
-  return data;
-}
-
-export const API = { getMoviesByQuery, getTrendingMovies, getMovieDetails, getMovieCast, getMovieReviews, getMovieGenres };
+export const API = { getMoviesByQuery, getTrendingMovies, getMovieDetails, getMovieCast, getMovieReviews };

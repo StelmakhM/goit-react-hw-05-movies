@@ -3,6 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 import { API } from '../../services/Api/Api';
 import MovieItem from '../MovieItem/MovieItem';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { StyledForm, StyledInput, SearchButton, MovieList } from './SearchBar.styled';
+import { CiSearch } from 'react-icons/ci';
 
 export default function SearchBar() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,16 +32,21 @@ export default function SearchBar() {
     API.getMoviesByQuery(query).then(setMovies).catch(console.log);
   };
 
-  return movies.length > 0 ? (
-    <ul>
-      {movies.map(({ id, original_title }) => (
-        <MovieItem key={id} title={original_title} id={id} href={`${id}`} />
-      ))}
-    </ul>
-  ) : (
-    <form onSubmit={onSubmitHandler}>
-      <input type="text" value={query} onChange={onChangeHandler} />
-      <button type="submit">Search</button>
-    </form>
+  return (
+    <>
+      <StyledForm onSubmit={onSubmitHandler}>
+        <StyledInput type="text" value={query} onChange={onChangeHandler} />
+        <SearchButton type="submit">
+          <CiSearch size={30} />
+        </SearchButton>
+      </StyledForm>
+      {movies.length > 0 && (
+        <MovieList>
+          {movies.map(({ id, original_title }) => (
+            <MovieItem key={id} title={original_title} id={id} href={`${id}`} />
+          ))}
+        </MovieList>
+      )}
+    </>
   );
 }

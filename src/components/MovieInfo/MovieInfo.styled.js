@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const StyledLink = styled(NavLink)`
+export const GoBackButton = styled(NavLink)`
   padding: 8px;
   font-size: 20px;
   text-transform: uppercase;
@@ -10,22 +10,22 @@ export const StyledLink = styled(NavLink)`
   align-items: center;
   border: 1px dashed burlywood;
 
-  :hover:not(.active) {
-    background-color: burlywood;
-    color: white;
+  :hover {
+    background-color: blanchedalmond;
   }
+`;
+
+export const GeneralContainer = styled.div`
+  margin: 20px auto 0;
+  max-width: 700px;
 `;
 
 export const MovieContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 30px;
   margin-top: 20px;
-`;
-
-export const GeneralContainer = styled.div`
-  margin: 0 auto;
-  width: 50%;
 `;
 
 export const InfoContainer = styled.div`
