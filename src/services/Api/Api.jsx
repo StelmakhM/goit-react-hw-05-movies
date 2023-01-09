@@ -8,6 +8,11 @@ const instance = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
 });
 
+async function getMovieDetails(id) {
+  const { data } = await instance(`/movie/${id}`);
+  return data;
+}
+
 async function getTrendingMovies() {
   const { data } = await instance('/trending/movie/week');
   return data.results;
@@ -20,11 +25,6 @@ async function getMoviesByQuery(query) {
     },
   });
   return data.results;
-}
-
-async function getMovieDetails(id) {
-  const { data } = await instance(`/movie/${id}`);
-  return data;
 }
 
 async function getMovieCast(id) {

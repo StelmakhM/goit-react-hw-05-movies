@@ -8,9 +8,7 @@ export default function Reviews() {
   const { movieId } = useParams();
 
   useEffect(() => {
-    API.getMovieReviews(movieId)
-      .then(reviews => setReviews(reviews.slice(0, 5)))
-      .catch(console.log);
+    API.getMovieReviews(movieId).then(setReviews).catch(console.log);
   }, []);
 
   return reviews.length > 0 ? (

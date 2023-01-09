@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { API } from '../../services/Api/Api';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { StyledForm, StyledInput, SearchButton, MovieList } from './SearchBar.styled';
+import { StyledForm, StyledInput, SearchButton, MovieList } from './MovieSearch.styled';
 import { CiSearch } from 'react-icons/ci';
-import MovieItem from '../MovieItem/MovieItem';
+import MovieItem from '../../components/MovieItem/MovieItem';
 
 export default function SearchBar() {
   const [searchParams, setSearchParams] = useSearchParams();

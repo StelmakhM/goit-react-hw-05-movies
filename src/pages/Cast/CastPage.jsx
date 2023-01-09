@@ -1,26 +1,23 @@
-import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { API } from '../../services/Api/Api';
-import placeholderURL from '../../utils/PlaseholderImage';
 import { CastContainer, CastItem, ActorPhoto } from './Cast.styled';
+import { placeholderURL, IMG_BASE_URL } from '../../utils/ImageURL';
 
 export default function Cast() {
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
-  const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w300';
 
   useEffect(() => {
-    API.getMovieCast(movieId)
-      .then(cast => setCast(cast.slice(0, 10)))
-      .catch(console.log);
+    API.getMovieCast(movieId).then(setCast).catch(console.log);
   }, []);
 
   return (
     <>
       {cast.length > 0 ? (
         <CastContainer>
-          {cast.map(({ name, profile_path, character }) => (
-            <CastItem key={name}>
+          {cast.map(({ name, profile_path, character }, i) => (
+            <CastItem key={i}>
               <ActorPhoto width="100" src={profile_path ? `${IMG_BASE_URL}${profile_path}` : placeholderURL} />
               <div>
                 <p>

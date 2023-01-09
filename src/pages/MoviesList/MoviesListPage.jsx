@@ -1,8 +1,7 @@
-import React from 'react';
-import MovieItem from '../MovieItem/MovieItem';
 import { useEffect, useState } from 'react';
 import { API } from '../../services/Api/Api';
 import { Container, Title, MovieList } from './MoviesList.styled';
+import MovieItem from '../../components/MovieItem/MovieItem';
 
 export default function MoviesList() {
   const [trendingMovies, setTrendingMovies] = useState([]);
