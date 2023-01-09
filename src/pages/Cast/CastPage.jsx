@@ -10,7 +10,7 @@ export default function Cast() {
 
   useEffect(() => {
     API.getMovieCast(movieId).then(setCast).catch(console.log);
-  }, []);
+  }, [movieId]);
 
   if (!cast) {
     return;

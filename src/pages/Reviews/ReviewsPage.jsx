@@ -9,7 +9,7 @@ export default function Reviews() {
 
   useEffect(() => {
     API.getMovieReviews(movieId).then(setReviews).catch(console.log);
-  }, []);
+  }, [movieId]);
 
   if (!reviews) {
     return;
