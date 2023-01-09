@@ -4,12 +4,16 @@ import { useParams } from 'react-router-dom';
 import { ReviewContainer, ReviewItem } from './Reviews.styled';
 
 export default function Reviews() {
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
     API.getMovieReviews(movieId).then(setReviews).catch(console.log);
   }, []);
+
+  if (!reviews) {
+    return;
+  }
 
   return reviews.length > 0 ? (
     <ReviewContainer>

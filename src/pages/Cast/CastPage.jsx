@@ -5,12 +5,16 @@ import { CastContainer, CastItem, ActorPhoto } from './Cast.styled';
 import { placeholderURL, IMG_BASE_URL } from '../../utils/ImageURL';
 
 export default function Cast() {
-  const [cast, setCast] = useState([]);
+  const [cast, setCast] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
     API.getMovieCast(movieId).then(setCast).catch(console.log);
   }, []);
+
+  if (!cast) {
+    return;
+  }
 
   return (
     <>
